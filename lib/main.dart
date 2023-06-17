@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
-import 'dashboard.dart';
-import 'menu_profile.dart';
-
+import 'package:get/get.dart';
+import 'login_screen.dart';
+import 'splash_screen.dart';
+import 'home_screen.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
+    initialRoute: '/',
+    getPages: [
+      GetPage(name: '/', page: () => SplashScreen()),
+      GetPage(name: '/login', page: () => LoginScreen()),
+      GetPage(name: '/home', page: () => HomeScreen()),
+    ],
+  ));
 }
-
-class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => Dashboard(),
-        '/menu_profile': (context) => MenuProfile(),
-      },
-    );
-  }
-}
-
-
-
