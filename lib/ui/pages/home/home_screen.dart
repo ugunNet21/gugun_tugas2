@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'ai_tab.dart';
+import '../chat/ai_tab.dart';
 import 'home_controller.dart';
 import 'home_tab.dart';
-import 'discussion_tab.dart';
-import 'profile_tab.dart';
+import '../chat/discussion_tab.dart';
+import '../profile/profile_tab.dart';
 
 class HomeScreen extends StatelessWidget {
   final HomeController controller = Get.put(HomeController());

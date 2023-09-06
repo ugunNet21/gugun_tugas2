@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:biodata_ugun/class_room.dart';
-import 'package:biodata_ugun/quiz.dart';
-import 'package:biodata_ugun/score.dart';
-import 'package:biodata_ugun/student_list.dart';
-import 'package:biodata_ugun/teacher_list.dart';
-import 'detail_mata_pelajaran.dart';
-import 'profile_tab.dart';
-import 'book_list_tab.dart';
+import 'package:biodata_ugun/ui/pages/class/class_room.dart';
+import 'package:biodata_ugun/ui/pages/quiz/quiz.dart';
+import 'package:biodata_ugun/ui/pages/quiz/score.dart';
+import 'package:biodata_ugun/ui/pages/student/student_list.dart';
+import 'package:biodata_ugun/ui/pages/teachers/teacher_list.dart';
+import '../mapel/detail_mata_pelajaran.dart';
+import '../profile/profile_tab.dart';
+import '../books/book_list_tab.dart';
 
 class HomeTab extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _HomeTabState extends State<HomeTab> {
               icon: CircleAvatar(
                 radius: 16,
                 backgroundImage: NetworkImage(
-                  'https://png.pngtree.com/png-clipart/20221025/ourmid/pngtree-anak-smp-berdiri-memasukkan-2-tangan-ke-saku-png-image_6386843.png', // Ganti dengan URL gambar profil yang diinginkan
+                  'https://pixlok.com/wp-content/uploads/2022/02/Profile-Icon-SVG-09856789.png', // Ganti dengan URL gambar profil yang diinginkan
                 ),
               ),
               onPressed: () {

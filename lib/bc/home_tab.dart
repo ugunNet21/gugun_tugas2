@@ -1,12 +1,12 @@
-import 'package:biodata_ugun/class_room.dart';
-import 'package:biodata_ugun/quiz.dart';
-import 'package:biodata_ugun/score.dart';
-import 'package:biodata_ugun/student_list.dart';
-import 'package:biodata_ugun/teacher_list.dart';
+import 'package:biodata_ugun/ui/pages/class/class_room.dart';
+import 'package:biodata_ugun/ui/pages/quiz/quiz.dart';
+import 'package:biodata_ugun/ui/pages/quiz/score.dart';
+import 'package:biodata_ugun/ui/pages/student/student_list.dart';
+import 'package:biodata_ugun/ui/pages/teachers/teacher_list.dart';
 import 'package:flutter/material.dart';
 
-import '../book_list_tab.dart';
-import '../detail_mata_pelajaran.dart';
+import '../ui/pages/books/book_list_tab.dart';
+import '../ui/pages/mapel/detail_mata_pelajaran.dart';
 import 'profile_tab.dart';
 
 

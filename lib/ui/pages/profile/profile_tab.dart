@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login_screen.dart';
+import '../login/login_screen.dart';
 
 class ProfileTab extends StatefulWidget {
   @override
@@ -60,7 +60,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 backgroundColor: Colors.white,
                 child: ClipOval(
                   child: Image.network(
-                    'https://png.pngtree.com/png-clipart/20221025/ourmid/pngtree-anak-smp-berdiri-memasukkan-2-tangan-ke-saku-png-image_6386843.png',
+                    'https://pixlok.com/wp-content/uploads/2022/02/Profile-Icon-SVG-09856789.png',
                     fit: BoxFit.cover,
                     width: 2 * 45,
                     height: 2 * 45,

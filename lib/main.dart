@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'home_screen.dart';
-import 'login_screen.dart';
-import 'splash_screen.dart';
+import 'ui/pages/home/home_screen.dart';
+import 'ui/pages/login/login_screen.dart';
+import 'ui/pages/splash_screen.dart';
 
 void main() {
   runApp(GetMaterialApp(

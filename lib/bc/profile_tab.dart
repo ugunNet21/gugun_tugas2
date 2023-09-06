@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../login_screen.dart';
+import '../ui/pages/login/login_screen.dart';
 // import 'login_screen.dart';
 
 class ProfileTab extends StatefulWidget {
