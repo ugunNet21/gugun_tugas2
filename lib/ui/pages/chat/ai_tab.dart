@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class AiTab extends StatefulWidget {
+  const AiTab({super.key});
+
   @override
   _AiTabState createState() => _AiTabState();
 }
@@ -47,7 +49,7 @@ class _AiTabState extends State<AiTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AI'),
+        title: const Text('AI'),
       ),
       body: Column(
         children: [
@@ -62,19 +64,19 @@ class _AiTabState extends State<AiTab> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 Expanded(
                   child: TextField(
                     controller: messageController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter your message',
                     ),
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: sendMessage,
                 ),
               ],

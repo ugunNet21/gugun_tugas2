@@ -9,11 +9,15 @@ class DiscussionTab extends StatelessWidget {
     'Percakapan 5',
   ];
 
+  DiscussionTab({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diskusi Soal'),
+        title: const Text(
+          'Diskusi Soal',
+        ),
       ),
       body: ListView.builder(
         itemCount: conversation.length,
@@ -27,14 +31,18 @@ class DiscussionTab extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('Percakapan'),
+                      title: const Text(
+                        'Percakapan',
+                      ),
                       content: Text(conversation[index]),
                       actions: [
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('Tutup'),
+                          child: const Text(
+                            'Tutup',
+                          ),
                         ),
                       ],
                     );

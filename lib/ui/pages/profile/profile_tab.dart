@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../login/login_screen.dart';
 
 class ProfileTab extends StatefulWidget {
+  const ProfileTab({super.key});
+
   @override
   _ProfileTabState createState() => _ProfileTabState();
 }
@@ -47,7 +49,7 @@ class _ProfileTabState extends State<ProfileTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,25 +69,25 @@ class _ProfileTabState extends State<ProfileTab> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: fullNameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Full Name',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               Row(
                 children: [
-                  Text('Gender:'),
-                  SizedBox(width: 8.0),
+                  const Text('Gender:'),
+                  const SizedBox(width: 8.0),
                   DropdownButton<String>(
                     value: selectedGender,
                     onChanged: (newValue) {
@@ -93,7 +95,7 @@ class _ProfileTabState extends State<ProfileTab> {
                         selectedGender = newValue!;
                       });
                     },
-                    items: [
+                    items: const [
                       DropdownMenuItem<String>(
                         value: 'Male',
                         child: Text('Male'),
@@ -106,21 +108,21 @@ class _ProfileTabState extends State<ProfileTab> {
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: classController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Class',
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               TextField(
                 controller: schoolController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'School',
                 ),
               ),
-              SizedBox(height: 32.0),
+              const SizedBox(height: 32.0),
               Visibility(
                 visible: fullNameController.text.isNotEmpty &&
                     emailController.text.isNotEmpty &&
@@ -129,13 +131,17 @@ class _ProfileTabState extends State<ProfileTab> {
                     schoolController.text.isNotEmpty,
                 child: ElevatedButton(
                   onPressed: isDataSaved ? _handleUpdate : _handleSave,
-                  child: Text(isDataSaved ? 'Update' : 'Save'),
+                  child: Text(
+                    isDataSaved ? 'Update' : 'Save',
+                  ),
                 ),
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: _handleLogout,
-                child: Text('Logout'),
+                child: const Text(
+                  'Logout',
+                ),
               ),
             ],
           ),

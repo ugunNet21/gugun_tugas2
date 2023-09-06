@@ -11,6 +11,8 @@ class Score {
 }
 
 class ScoreListWidget extends StatefulWidget {
+  const ScoreListWidget({super.key});
+
   @override
   _ScoreListWidgetState createState() => _ScoreListWidgetState();
 }
@@ -59,19 +61,3 @@ class _ScoreListWidgetState extends State<ScoreListWidget> {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Score List',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: ScoreListWidget(),
-    );
-  }
-}

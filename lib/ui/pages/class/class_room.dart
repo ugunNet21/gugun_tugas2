@@ -11,6 +11,8 @@ class Classroom {
 }
 
 class ClassroomListWidget extends StatefulWidget {
+  const ClassroomListWidget({super.key});
+
   @override
   _ClassroomListWidgetState createState() => _ClassroomListWidgetState();
 }
@@ -43,7 +45,7 @@ class _ClassroomListWidgetState extends State<ClassroomListWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Classroom List'),
+        title: const Text('Classroom List'),
       ),
       body: ListView.builder(
         itemCount: classroomList.length,
@@ -60,10 +62,12 @@ class _ClassroomListWidgetState extends State<ClassroomListWidget> {
 }
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

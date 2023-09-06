@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DetailMateriPelajaran extends StatelessWidget {
   final String subject;
 
-  const DetailMateriPelajaran({required this.subject});
+  const DetailMateriPelajaran({super.key, required this.subject});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,12 @@ class DetailMateriPelajaran extends StatelessWidget {
     List<Question> islamicHistoryQuestions = [
       Question(
         question: 'Siapakah tokoh utama dalam sejarah Islam?',
-        options: ['Nabi Muhammad SAW', 'Ali bin Abi Thalib', 'Umar bin Khattab', 'Abu Bakar Ash-Shiddiq'],
+        options: [
+          'Nabi Muhammad SAW',
+          'Ali bin Abi Thalib',
+          'Umar bin Khattab',
+          'Abu Bakar Ash-Shiddiq'
+        ],
         answerIndex: 0,
       ),
       Question(
@@ -102,9 +107,9 @@ class DetailMateriPelajaran extends StatelessWidget {
         // Tampilkan pesan kesalahan jika mata pelajaran tidak ditemukan
         return Scaffold(
           appBar: AppBar(
-            title: Text('Detail Materi Pelajaran'),
+            title: const Text('Detail Materi Pelajaran'),
           ),
-          body: Center(
+          body: const Center(
             child: Text('Mata pelajaran tidak ditemukan.'),
           ),
         );
@@ -121,7 +126,7 @@ class DetailMateriPelajaran extends StatelessWidget {
         itemBuilder: (context, index) {
           Question question = questions[index];
           return Card(
-            margin: EdgeInsets.all(16),
+            margin: const EdgeInsets.all(16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -131,7 +136,7 @@ class DetailMateriPelajaran extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text('Pilih Jawaban'),
+                      title: const Text('Pilih Jawaban'),
                       content: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
@@ -151,25 +156,29 @@ class DetailMateriPelajaran extends StatelessWidget {
                                   int correctAnswers = 0;
                                   for (Question question in questions) {
                                     if (question.selectedAnswer != null &&
-                                        question.selectedAnswer == question.answerIndex) {
+                                        question.selectedAnswer ==
+                                            question.answerIndex) {
                                       correctAnswers++;
                                     }
                                   }
-                                  score = (correctAnswers / questions.length * 100).round();
+                                  score =
+                                      (correctAnswers / questions.length * 100)
+                                          .round();
                                   // Menampilkan dialog hasil latihan soal
                                   showDialog(
                                     context: context,
                                     builder: (context) {
                                       return AlertDialog(
-                                        title: Text('Hasil Latihan Soal'),
+                                        title: const Text('Hasil Latihan Soal'),
                                         content: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Text(
                                               'Jawaban Benar: $correctAnswers / ${questions.length}',
                                             ),
-                                            SizedBox(height: 8),
+                                            const SizedBox(height: 8),
                                             Text('Skor: $score%'),
                                           ],
                                         ),
@@ -178,7 +187,7 @@ class DetailMateriPelajaran extends StatelessWidget {
                                             onPressed: () {
                                               Navigator.pop(context);
                                             },
-                                            child: Text('Tutup'),
+                                            child: const Text('Tutup'),
                                           ),
                                         ],
                                       );
@@ -195,23 +204,24 @@ class DetailMateriPelajaran extends StatelessWidget {
                 );
               },
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Pertanyaan ${index + 1}:',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       question.question,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ListView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: question.options.length,
                       itemBuilder: (context, optionIndex) {
                         String option = question.options[optionIndex];
@@ -242,19 +252,21 @@ class DetailMateriPelajaran extends StatelessWidget {
             }
           }
 
-          score = (correctAnswers / questions.length * 100).round(); // Hitung skor
+          score =
+              (correctAnswers / questions.length * 100).round(); // Hitung skor
 
           showDialog(
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: Text('Hasil Latihan Soal'),
+                title: const Text('Hasil Latihan Soal'),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Jawaban Benar: $correctAnswers / ${questions.length}'),
-                    SizedBox(height: 8),
+                    Text(
+                        'Jawaban Benar: $correctAnswers / ${questions.length}'),
+                    const SizedBox(height: 8),
                     Text('Skor: $score%'),
                   ],
                 ),
@@ -263,14 +275,14 @@ class DetailMateriPelajaran extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Tutup'),
+                    child: const Text('Tutup'),
                   ),
                 ],
               );
             },
           );
         },
-        child: Icon(Icons.check),
+        child: const Icon(Icons.check),
       ),
     );
   }

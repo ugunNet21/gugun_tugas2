@@ -16,6 +16,8 @@ class HomeScreen extends StatelessWidget {
     ProfileTab(),
   ];
 
+  HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           selectedItemColor: Colors.blue, // Warna ikon dan label yang dipilih
           unselectedItemColor:
               Colors.grey, // Warna ikon dan label yang tidak dipilih
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

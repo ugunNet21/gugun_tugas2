@@ -6,11 +6,14 @@ import '../home/home_screen.dart';
 class LoginScreen extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  LoginScreen({super.key});
+
   Future<UserCredential> _signInWithGoogle() async {
     try {
       final GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-      final UserCredential userCredential = await _auth.signInWithPopup(googleProvider);
+      final UserCredential userCredential =
+          await _auth.signInWithPopup(googleProvider);
 
       Get.off(() => HomeScreen());
 
@@ -25,25 +28,25 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Selamat Datang!',
               style: TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () {
                 _signInWithGoogle();
               },
-              icon: Icon(Icons.login),
-              label: Text('Login dengan Google'),
+              icon: const Icon(Icons.login),
+              label: const Text('Login dengan Google'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () {
                 // Login using Apple ID
@@ -51,8 +54,8 @@ class LoginScreen extends StatelessWidget {
                 // After successful login, navigate to HomeScreen
                 Get.off(() => HomeScreen());
               },
-              icon: Icon(Icons.login),
-              label: Text('Login dengan Apple ID'),
+              icon: const Icon(Icons.login),
+              label: const Text('Login dengan Apple ID'),
             ),
           ],
         ),

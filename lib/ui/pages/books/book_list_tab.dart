@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'book_detail_screen.dart';
 
 class BookListTab extends StatefulWidget {
+  const BookListTab({super.key});
+
   @override
   _BookListTabState createState() => _BookListTabState();
 }
@@ -19,12 +21,16 @@ class _BookListTabState extends State<BookListTab> {
 
   Future<void> fetchBooks() async {
     final response = await http.get(
-        Uri.parse('https://api.itbook.store/1.0/search/Flutter%20Developer'));//daftar buku
+      Uri.parse('https://api.itbook.store/1.0/search/Flutter%20Developer'),
+    ); //daftar buku
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       setState(() {
-        books =
-            List<Book>.from(data['books'].map((book) => Book.fromJson(book)));
+        books = List<Book>.from(
+          data['books'].map(
+            (book) => Book.fromJson(book),
+          ),
+        );
       });
     } else {
       print('Failed to fetch books');
@@ -86,4 +92,3 @@ class Book {
     );
   }
 }
-

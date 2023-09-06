@@ -9,6 +9,8 @@ import '../profile/profile_tab.dart';
 import '../books/book_list_tab.dart';
 
 class HomeTab extends StatefulWidget {
+  const HomeTab({super.key});
+
   @override
   State<HomeTab> createState() => _HomeTabState();
 }
@@ -32,23 +34,23 @@ class _HomeTabState extends State<HomeTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80),
+        preferredSize: const Size.fromHeight(80),
         child: AppBar(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
             ),
           ),
-          title: Text('Dashboard'),
+          title: const Text('Dashboard'),
           actions: [
             IconButton(
-              icon: Icon(Icons.notifications),
+              icon: const Icon(Icons.notifications),
               onPressed: () {
                 // Handle notification icon pressed
               },
             ),
             IconButton(
-              icon: CircleAvatar(
+              icon: const CircleAvatar(
                 radius: 16,
                 backgroundImage: NetworkImage(
                   'https://pixlok.com/wp-content/uploads/2022/02/Profile-Icon-SVG-09856789.png', // Ganti dengan URL gambar profil yang diinginkan
@@ -58,7 +60,7 @@ class _HomeTabState extends State<HomeTab> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ProfileTab(),
+                    builder: (context) => const ProfileTab(),
                   ),
                 );
               },
@@ -69,15 +71,15 @@ class _HomeTabState extends State<HomeTab> {
       body: Column(
         children: [
           Card(
-            margin: EdgeInsets.all(16),
+            margin: const EdgeInsets.all(16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Icon(Icons.person, size: 20),
                       SizedBox(width: 8),
@@ -87,7 +89,7 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Column(
                     children: [
                       Row(
@@ -99,11 +101,11 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => BookListTab(),
+                                    builder: (context) => const BookListTab(),
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.library_books, size: 40),
                                   Text('Daftar Buku'),
@@ -121,7 +123,7 @@ class _HomeTabState extends State<HomeTab> {
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.people, size: 40),
                                   Text('Daftar Guru'),
@@ -139,7 +141,7 @@ class _HomeTabState extends State<HomeTab> {
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.school, size: 40),
                                   Text('Daftar Siswa'),
@@ -149,7 +151,7 @@ class _HomeTabState extends State<HomeTab> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -159,11 +161,11 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ClassroomListWidget(),
+                                    builder: (context) => const ClassroomListWidget(),
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.class_, size: 40),
                                   Text('Class'),
@@ -181,7 +183,7 @@ class _HomeTabState extends State<HomeTab> {
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.quiz, size: 40),
                                   Text('Quiz'),
@@ -195,11 +197,11 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ScoreListWidget(),
+                                    builder: (context) => const ScoreListWidget(),
                                   ),
                                 );
                               },
-                              child: Column(
+                              child: const Column(
                                 children: [
                                   Icon(Icons.score, size: 40),
                                   Text('Score'),
@@ -216,26 +218,24 @@ class _HomeTabState extends State<HomeTab> {
             ),
           ),
           Flexible(
-            child: Container(
-              child: ListView.builder(
-                itemCount: subjects.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(subjects[index]),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailMateriPelajaran(subject: subjects[index]),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+            child: ListView.builder(
+              itemCount: subjects.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(subjects[index]),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailMateriPelajaran(subject: subjects[index]),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ),
         ],

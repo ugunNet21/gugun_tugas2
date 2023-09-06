@@ -21,16 +21,17 @@ class SplashScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: 16),
-                    Icon(
+                    const SizedBox(height: 16),
+                    const Icon(
                       Icons.school,
                       size: 64,
                       color: Colors.blue,
                     ),
                     Text(
                       'Ihsan Edu',
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            color: Colors.black, // Ubah warna teks menjadi hitam
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                            color:
+                                Colors.black, // Ubah warna teks menjadi hitam
                           ),
                     ),
                   ],

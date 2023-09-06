@@ -65,19 +65,4 @@ class _StudentListWidgetState extends State<StudentListWidget> {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Student List',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: StudentListWidget(),
-    );
-  }
-}
