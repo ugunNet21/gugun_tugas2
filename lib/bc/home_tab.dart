@@ -1,19 +1,16 @@
-import 'package:flutter/material.dart';
 import 'package:biodata_ugun/class_room.dart';
 import 'package:biodata_ugun/quiz.dart';
 import 'package:biodata_ugun/score.dart';
 import 'package:biodata_ugun/student_list.dart';
 import 'package:biodata_ugun/teacher_list.dart';
-import 'detail_mata_pelajaran.dart';
+import 'package:flutter/material.dart';
+
+import '../book_list_tab.dart';
+import '../detail_mata_pelajaran.dart';
 import 'profile_tab.dart';
-import 'book_list_tab.dart';
 
-class HomeTab extends StatefulWidget {
-  @override
-  State<HomeTab> createState() => _HomeTabState();
-}
 
-class _HomeTabState extends State<HomeTab> {
+class HomeTab extends StatelessWidget {
   final List<String> subjects = [
     'Matematika',
     'Bahasa Indonesia',
@@ -122,11 +119,11 @@ class _HomeTabState extends State<HomeTab> {
                                 );
                               },
                               child: Column(
-                                children: [
-                                  Icon(Icons.people, size: 40),
-                                  Text('Daftar Guru'),
-                                ],
-                              ),
+                              children: [
+                                Icon(Icons.people, size: 40),
+                                Text('Daftar Guru'),
+                              ],
+                            ),
                             ),
                           ),
                           Flexible(
@@ -135,16 +132,14 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => StudentListWidget(),
-                                  ),
-                                );
+                                    builder:(context)=> StudentListWidget() ));
                               },
                               child: Column(
-                                children: [
-                                  Icon(Icons.school, size: 40),
-                                  Text('Daftar Siswa'),
-                                ],
-                              ),
+                              children: [
+                                Icon(Icons.school, size: 40),
+                                Text('Daftar Siswa'),
+                              ],
+                            ),
                             ),
                           ),
                         ],
@@ -159,16 +154,15 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ClassroomListWidget(),
-                                  ),
-                                );
+                                    builder:(context)=> ClassroomListWidget() ),
+                                    );
                               },
                               child: Column(
-                                children: [
-                                  Icon(Icons.class_, size: 40),
-                                  Text('Class'),
-                                ],
-                              ),
+                              children: [
+                                Icon(Icons.class_, size: 40),
+                                Text('Class'),
+                              ],
+                            ),
                             ),
                           ),
                           Flexible(
@@ -177,34 +171,30 @@ class _HomeTabState extends State<HomeTab> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => QuizListWidget(),
-                                  ),
-                                );
+                                    builder:(context) => QuizListWidget(),), );
                               },
                               child: Column(
-                                children: [
-                                  Icon(Icons.quiz, size: 40),
-                                  Text('Quiz'),
-                                ],
-                              ),
+                              children: [
+                                Icon(Icons.quiz, size: 40),
+                                Text('Quiz'),
+                              ],
+                            ),
                             ),
                           ),
                           Flexible(
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
-                                  context,
+                                  context, 
                                   MaterialPageRoute(
-                                    builder: (context) => ScoreListWidget(),
-                                  ),
-                                );
+                                    builder: (context) => ScoreListWidget(),),);
                               },
                               child: Column(
-                                children: [
-                                  Icon(Icons.score, size: 40),
-                                  Text('Score'),
-                                ],
-                              ),
+                              children: [
+                                Icon(Icons.score, size: 40),
+                                Text('Score'),
+                              ],
+                            ),
                             ),
                           ),
                         ],
@@ -215,27 +205,25 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
           ),
-          Flexible(
-            child: Container(
-              child: ListView.builder(
-                itemCount: subjects.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(subjects[index]),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                DetailMateriPelajaran(subject: subjects[index]),
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: subjects.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(subjects[index]),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailMateriPelajaran(subject: subjects[index]),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
           ),
         ],
@@ -243,3 +231,20 @@ class _HomeTabState extends State<HomeTab> {
     );
   }
 }
+
+// void main() {
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'My App',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       home: HomeTab(),
+//     );
+//   }
+// }

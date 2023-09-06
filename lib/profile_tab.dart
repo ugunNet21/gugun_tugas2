@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login_screen.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -8,62 +9,38 @@ class ProfileTab extends StatefulWidget {
 }
 
 class _ProfileTabState extends State<ProfileTab> {
-  String fullName = '';
-  String email = '';
-  String gender = '';
-  String selectedGender = '';
-  String kelas = '';
-  String school = '';
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void saveData() {
-    if (_formKey.currentState!.validate()) {
-      // Save data to storage or other data source
-      // You can modify this logic as needed
-      setState(() {
-        fullName = fullNameController.text;
-        email = emailController.text;
-        gender = selectedGender;
-        kelas = kelasController.text;
-        school = schoolController.text;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Data berhasil disimpan')),
-      );
-    }
-  }
-
-  void updateData() {
-    if (_formKey.currentState!.validate()) {
-      // Update data in storage or other data source
-      // You can modify this logic as needed
-      setState(() {
-        fullName = fullNameController.text;
-        email = emailController.text;
-        gender = selectedGender;
-        kelas = kelasController.text;
-        school = schoolController.text;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Data berhasil diperbarui')),
-      );
-    }
-  }
-
   TextEditingController fullNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController kelasController = TextEditingController();
+  String selectedGender = 'Male'; // Default value 'Male'
+  TextEditingController classController = TextEditingController();
   TextEditingController schoolController = TextEditingController();
+
+  bool isDataSaved = false;
 
   @override
   void initState() {
     super.initState();
-    // Fill the controllers with previously saved data
-    fullNameController.text = fullName;
-    emailController.text = email;
-    kelasController.text = kelas;
-    schoolController.text = school;
+    loadData(); // Load the saved data when the widget initializes
+  }
+
+  void loadData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      fullNameController.text = prefs.getString('fullName') ?? '';
+      emailController.text = prefs.getString('email') ?? '';
+      selectedGender = prefs.getString('gender') ?? 'Male';
+      classController.text = prefs.getString('class') ?? '';
+      schoolController.text = prefs.getString('school') ?? '';
+    });
+  }
+
+  void saveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('fullName', fullNameController.text);
+    await prefs.setString('email', emailController.text);
+    await prefs.setString('gender', selectedGender);
+    await prefs.setString('class', classController.text);
+    await prefs.setString('school', schoolController.text);
   }
 
   @override
@@ -74,109 +51,126 @@ class _ProfileTabState extends State<ProfileTab> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              CircleAvatar(
+                radius: 45,
+                backgroundColor: Colors.white,
+                child: ClipOval(
+                  child: Image.network(
                     'https://png.pngtree.com/png-clipart/20221025/ourmid/pngtree-anak-smp-berdiri-memasukkan-2-tangan-ke-saku-png-image_6386843.png',
-                  ),
-                  radius: 50,
-                ),
-                SizedBox(height: 16),
-                TextFormField(
-                  controller: fullNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Nama Lengkap',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nama Lengkap harus diisi';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16),
-                TextFormField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Email harus diisi';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(height: 16),
-                Text('Jenis Kelamin'),
-                Row(
-                  children: [
-                    Radio<String>(
-                      value: 'Laki-laki',
-                      groupValue: selectedGender,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedGender = value!;
-                        });
-                      },
-                    ),
-                    Text('Laki-laki'),
-                    SizedBox(width: 16),
-                    Radio<String>(
-                      value: 'Perempuan',
-                      groupValue: selectedGender,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedGender = value!;
-                        });
-                      },
-                    ),
-                    Text('Perempuan'),
-                  ],
-                ),
-                SizedBox(height: 16),
-                TextFormField(
-                  controller: kelasController,
-                  decoration: InputDecoration(
-                    labelText: 'Kelas',
+                    fit: BoxFit.cover,
+                    width: 2 * 45,
+                    height: 2 * 45,
                   ),
                 ),
-                SizedBox(height: 16),
-                TextFormField(
-                  controller: schoolController,
-                  decoration: InputDecoration(
-                    labelText: 'Sekolah',
+              ),
+              SizedBox(height: 20),
+              TextField(
+                controller: fullNameController,
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                ),
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+              ),
+              SizedBox(height: 16.0),
+              Row(
+                children: [
+                  Text('Gender:'),
+                  SizedBox(width: 8.0),
+                  DropdownButton<String>(
+                    value: selectedGender,
+                    onChanged: (newValue) {
+                      setState(() {
+                        selectedGender = newValue!;
+                      });
+                    },
+                    items: [
+                      DropdownMenuItem<String>(
+                        value: 'Male',
+                        child: Text('Male'),
+                      ),
+                      DropdownMenuItem<String>(
+                        value: 'Female',
+                        child: Text('Female'),
+                      ),
+                    ],
                   ),
+                ],
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: classController,
+                decoration: InputDecoration(
+                  labelText: 'Class',
                 ),
-                SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      if (fullName.isEmpty && email.isEmpty) {
-                        saveData();
-                      } else {
-                        updateData();
-                      }
-                    }
-                  },
-                  child: Text(fullName.isEmpty && email.isEmpty ? 'Simpan Data' : 'Perbarui Data'),
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                controller: schoolController,
+                decoration: InputDecoration(
+                  labelText: 'School',
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 32.0),
+              Visibility(
+                visible: fullNameController.text.isNotEmpty &&
+                    emailController.text.isNotEmpty &&
+                    selectedGender.isNotEmpty &&
+                    classController.text.isNotEmpty &&
+                    schoolController.text.isNotEmpty,
+                child: ElevatedButton(
+                  onPressed: isDataSaved ? _handleUpdate : _handleSave,
+                  child: Text(isDataSaved ? 'Update' : 'Save'),
+                ),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: _handleLogout,
+                child: Text('Logout'),
+              ),
+            ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.offAll(() => LoginScreen());
-        },
-        child: Icon(Icons.logout),
-      ),
     );
+  }
+
+  void _handleSave() {
+    saveData(); // Save the entered data
+    setState(() {
+      isDataSaved = true;
+    });
+  }
+
+  void _handleUpdate() {
+    // Perform data update logic here
+
+    // Example: Clear the form fields after updating
+    fullNameController.clear();
+    emailController.clear();
+    selectedGender = 'Male'; // Restore the default value 'Male'
+    classController.clear();
+    schoolController.clear();
+
+    setState(() {
+      isDataSaved = false;
+    });
+  }
+
+  void _handleLogout() {
+    // Perform logout logic here
+    // For example, clear user session or navigate to the login screen
+
+    saveData(); // Save the entered data before logout
+    Get.offAll(LoginScreen());
   }
 }

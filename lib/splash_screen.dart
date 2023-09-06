@@ -5,8 +5,8 @@ import 'home_screen.dart';
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Simulasi penundaan 2 detik sebelum pindah ke halaman beranda
-    Future.delayed(Duration(seconds: 2), () {
+    // Simulasi penundaan 3 detik sebelum pindah ke halaman beranda
+    Future.delayed(Duration(seconds: 3), () {
       Get.off(() => HomeScreen());
     });
 
@@ -29,7 +29,9 @@ class SplashScreen extends StatelessWidget {
                     ),
                     Text(
                       'Ihsan Edu',
-                      style: TextStyle(fontSize: 24),
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                            color: Colors.black, // Ubah warna teks menjadi hitam
+                          ),
                     ),
                   ],
                 ),

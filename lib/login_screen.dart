@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<UserCredential> _signInWithGoogle() async {
+    try {
+      final GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+      final UserCredential userCredential = await _auth.signInWithPopup(googleProvider);
+
+      Get.off(() => HomeScreen());
+
+      return userCredential;
+    } catch (error) {
+      print('Error: $error');
+      throw Exception('Failed to sign in with Google');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,24 +36,23 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24),
             ),
             SizedBox(height: 16),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
-                // Login menggunakan Google
-                // Implementasikan logika login dengan Google di sini
-                // Setelah berhasil login, pindah ke halaman HomeScreen
-                Get.off(() => HomeScreen());
+                _signInWithGoogle();
               },
-              child: Text('Login dengan Google'),
+              icon: Icon(Icons.login),
+              label: Text('Login dengan Google'),
             ),
             SizedBox(height: 16),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
-                // Login menggunakan Apple ID
-                // Implementasikan logika login dengan Apple ID di sini
-                // Setelah berhasil login, pindah ke halaman HomeScreen
+                // Login using Apple ID
+                // Implement Apple ID login logic here
+                // After successful login, navigate to HomeScreen
                 Get.off(() => HomeScreen());
               },
-              child: Text('Login dengan Apple ID'),
+              icon: Icon(Icons.login),
+              label: Text('Login dengan Apple ID'),
             ),
           ],
         ),
