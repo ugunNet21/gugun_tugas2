@@ -3,10 +3,15 @@ import 'package:get/get.dart';
 import 'home/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // Simulasi penundaan 3 detik sebelum pindah ke halaman beranda
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(
+        const Duration(
+          seconds: 3,
+        ), () {
       Get.off(() => HomeScreen());
     });
 
@@ -21,7 +26,9 @@ class SplashScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 16),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     const Icon(
                       Icons.school,
                       size: 64,

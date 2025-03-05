@@ -177,6 +177,8 @@ class _ProfileTabState extends State<ProfileTab> {
     // For example, clear user session or navigate to the login screen
 
     saveData(); // Save the entered data before logout
-    Get.offAll(LoginScreen());
+    Get.offAll(
+      LoginScreen(),
+    );
   }
 }
